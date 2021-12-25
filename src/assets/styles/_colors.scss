@@ -1,14 +1,25 @@
 :root {
-    --primary-color: #2c4f76;
-    --secondary-color: #b0b0b0;
-    --muted-color: #4d4d4d;
-    --success-color: #388E3C;
-    --error-color: #D32F2F;
-    --light-color: #000000;
-    --dark-color: #f3f3f3;
+    --primary-color: #1c7cd5;
+    --success-color: #5cb85c;
+    --info-color: #56C0E0;
+    --warning-color: #F0AD4E;
+    --error-color: #D9534F;
+
+    --grey1-color: #ECEEEF;
+    --grey2-color: #DDDDDD;
+    --grey3-color: #818A91;
+    --grey4-color: #777777;
+    --grey5-color: #55595C;
+    --grey6-color: #373A3C;
+
+    --light-blue-color:#DCEDF6; 
+    --light-grey-color:#E2EED8; 
+    --light-red-color:#FCF7E4; 
+    --light-purpule-color:#EFDFDF; 
+
 }
 
-$colors: primary, secondary, muted, success, error, light, dark;
+$colors: primary, success, info, warning, grey1,grey2,grey3,grey4,grey5,grey6, light-blue, light-grey,light-red,light-purpule;
 
 @each $color in $colors {
     .#{$color} {
