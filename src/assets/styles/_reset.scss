@@ -1,0 +1,39 @@
+html {
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0;
+    font-family: IranYekan;
+    flex-grow: 1;
+}
+
+input, button, select, textarea{
+    font-family: inherit;
+}
+
+*{
+    &, &::after, &::before{
+        box-sizing: border-box;
+    }
+}   
+
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: var(--secondary-color);
+
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--primary-color);
+}

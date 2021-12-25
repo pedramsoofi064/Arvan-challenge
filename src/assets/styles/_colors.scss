@@ -1,0 +1,20 @@
+:root {
+    --primary-color: #2c4f76;
+    --secondary-color: #b0b0b0;
+    --muted-color: #4d4d4d;
+    --success-color: #388E3C;
+    --error-color: #D32F2F;
+    --light-color: #000000;
+    --dark-color: #f3f3f3;
+}
+
+$colors: primary, secondary, muted, success, error, light, dark;
+
+@each $color in $colors {
+    .#{$color} {
+        background-color: var(--#{$color}-color) !important;
+    } 
+    .text-#{$color} {
+        color: var(--#{$color}-color) !important;
+    } 
+}

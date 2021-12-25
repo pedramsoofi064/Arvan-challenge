@@ -1,0 +1,97 @@
+@import 'variables';
+@for $i from 0 to 21 {
+    .m{
+        &-#{$i}{
+            margin: $i * 0.3em !important;
+        }
+        &t-#{$i}, &y-#{$i}{
+            margin-top: $i * 0.3em !important;
+        }
+
+        &r-#{$i}, &x-#{$i}{
+            margin-right: $i * 0.3em !important;
+        }
+        
+        &b-#{$i}, &y-#{$i}{
+            margin-bottom: $i * 0.3em !important;
+        }
+
+        &l-#{$i}, &x-#{$i}{
+            margin-left: $i * 0.3em !important;
+        }
+    }
+
+    .p{
+        &-#{$i}{
+            padding: $i * 0.3em !important;
+        }
+
+        &t-#{$i}, &y-#{$i}{
+            padding-top: $i * 0.3em !important;
+        }
+
+        &r-#{$i}, &x-#{$i}{
+            padding-right: $i * 0.3em !important;
+        }
+        
+        &b-#{$i}, &y-#{$i}{
+            padding-bottom: $i * 0.3em !important;
+        }
+
+        &l-#{$i}, &x-#{$i}{
+            padding-left: $i * 0.3em !important;
+        }
+    }
+}
+
+$displays: inline, block, flex, inline-block, inline-flex;
+@each $display in $displays {
+    .d-#{$display} {
+        display: $display;
+    }
+    @each $breakpoint, $size in $breakpoints {
+        @media only screen and (min-width: $size) {
+            .d-#{$breakpoint}-#{$display} {
+                display: $display;
+            }       
+        }
+    }
+}
+
+$justfies: flex-start, center, flex-end, space-between, space-around;
+@each $justify in $justfies {
+    .justify-#{$justify} {
+        justify-content: $justify;
+    }
+}
+$alignItems: flex-start, center, flex-end, space-between, space-around;
+@each $alignItem in $alignItems {
+    .align-#{$alignItem} {
+        align-items: $alignItem;
+    }
+}
+
+$flexWraps: nowrap, wrap, wrap-reverse;
+@each $wrap in $flexWraps {
+    .flex-#{$wrap} {
+        flex-wrap: $wrap;
+    }
+}
+
+$widthAndHeightSizes: 25, 50, 75, 100, auto;
+@each $widthAndHeightSize in $widthAndHeightSizes {
+    .w-#{$widthAndHeightSize} {
+        @if($widthAndHeightSize != auto) {
+           width: $widthAndHeightSize * 1%;
+        } @else {
+            width: $widthAndHeightSize;
+        }
+    }
+    .h-#{$widthAndHeightSize} {
+        @if($widthAndHeightSize != auto) {
+            height: $widthAndHeightSize * 1%;
+        } @else {
+            height: $widthAndHeightSize;
+        }
+    }
+}

@@ -1,19 +1,15 @@
 <template>
-  <div id="app">
-    
-  </div>
+  <Layout>
+    <router-view />
+  </Layout>
 </template>
 
 <script>
+const Layout = () => import('@/layouts/layoutWrapper.vue');
 
 export default {
-  name: 'App',
-  components: {
-    
-  }
-}
+  components: { Layout },
+};
 </script>
 
-<style>
-
-</style>
+<style lang="scss"></style>

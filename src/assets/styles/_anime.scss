@@ -1,0 +1,15 @@
+.fade-translate-enter-active, .fade-translate-leave-active, .fade-scale-enter-active, .fade-scale-leave-active, .fade-enter-active, .fade-leave-active{
+    transition: all .5s;
+}
+.fade-translate-enter-active {
+    transition-delay: 0.5s;
+}
+.fade-scale-enter, .fade-scale-leave-to  {
+    opacity: 0;
+    transform: scale(0) rotate(30deg);
+}.fade-translate-enter, .fade-translate-leave-to  {
+    transform: translateX(-300px);
+}
+.fade-enter, .fade-leave-to  {
+    opacity: 0;
+}

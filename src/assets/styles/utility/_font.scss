@@ -1,0 +1,29 @@
+.fs{
+    @for $i from 6 to 50 {
+        &-#{$i}{
+            font-size: $i * 0.1rem !important;
+        }
+    }
+}
+
+.lh{
+    @for $i from 6 to 50 {
+        &-#{$i}{
+            line-height: $i * 0.1rem !important;
+        }
+    }
+}
+
+$aligns: left, right, center, justify;
+@each $align in $aligns {
+    .text-#{$align} {
+        text-align: $align;
+    }
+}
+
+$fontWeights: bold, normal, 100, 700;
+@each $fontWeight in $fontWeights {
+    .fw-#{$fontWeight} {
+        font-weight: $fontWeight;
+    }
+}
