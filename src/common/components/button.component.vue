@@ -12,6 +12,7 @@
 <script>
 import Loading from './loading.component.vue'
 export default {
+    name: 'buttonComponent',
     components: { Loading },
     props: {
         loading: {
@@ -34,7 +35,14 @@ export default {
 
     &-primary {
         background-color: var(--primary-color);
+        border: 1px solid var(--primary-color);
         color: white;
+    }
+
+    &-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        
     }
 }
 
