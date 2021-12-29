@@ -5,6 +5,9 @@
         padding: 40px 20px;
         border-radius: 4px;
         width: 450px;
+        .form__input {
+            margin-bottom: 20px;
+        }
     }
     &__title {
         color: var(--grey4-color);
