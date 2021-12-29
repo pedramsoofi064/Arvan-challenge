@@ -18,4 +18,16 @@
         line-height: 1.19;
         letter-spacing: normal;
     }
+
+    &__subtitle {
+        margin-top: 1em;
+        .subtitle__text {
+            margin-right: 10px;
+            color: var(--grey6-color);
+        }
+        .subtitle__link {
+            text-decoration: none;
+            color: var(--grey6-color);
+        }
+    }
 }
