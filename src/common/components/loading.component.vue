@@ -41,7 +41,7 @@
 .blobs {
 	filter: url(#goo);
 	width: 100%;
-	height: 22px;
+	height: 23px;
 	position: relative;
 	overflow: hidden;
 	border-radius: 70px;
@@ -53,8 +53,8 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		width: 22px;
-		height: 22px;
+		width: 23px;
+		height: 23px;
 		transform-origin: left top;
 		transform: scale(.9) translate(-50%, -50%);
 		animation: blob-grow
@@ -71,8 +71,8 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 22px;
-	height: 22px;
+	width: 23px;
+	height: 23px;
 	border-radius: 50%;
 	animation: blobs
 		ease-out

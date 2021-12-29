@@ -12,9 +12,9 @@ const routes = [
 
     },
     {
-        path: authConstants.SIGNUP_ROUTE_PATH,
-        name: authConstants.SIGNUP_ROUTE_NAME,
-        component: ()=> import('./signup/signup.view.vue')
+        path: authConstants.REGISTER_ROUTE_PATH,
+        name: authConstants.REGISTER_ROUTE_NAME,
+        component: ()=> import('./register/register.view.vue')
     },
     
 ]
