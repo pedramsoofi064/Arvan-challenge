@@ -1,6 +1,5 @@
 <template>
-   <main class="default-layout">
-       default
+   <main class="default-layout w-100 h-100">
        <slot />
    </main>
 </template>

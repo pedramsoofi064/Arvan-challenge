@@ -1,0 +1,33 @@
+.auth {
+
+    .auth_section {
+        background-color: var(--grey1-color);
+        padding: 40px 20px;
+        border-radius: 4px;
+        width: 450px;
+        .form__input {
+            margin-bottom: 20px;
+        }
+    }
+    &__title {
+        color: var(--grey4-color);
+        font-size: 47px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.19;
+        letter-spacing: normal;
+    }
+
+    &__subtitle {
+        margin-top: 1em;
+        .subtitle__text {
+            margin-right: 10px;
+            color: var(--grey6-color);
+        }
+        .subtitle__link {
+            text-decoration: none;
+            color: var(--grey6-color);
+        }
+    }
+}
