@@ -6,7 +6,7 @@
         v-for="(link, index) in sidebarData.links"
         :key="`link-${index}`"
         :to="link.anchor"
-        active-class="active"
+        exact-active-class="active"
       >
         {{ link.text }}
       </router-link>
@@ -44,7 +44,8 @@ export default {
       cursor: pointer;
       text-decoration: none;
       color: white;
-      &.active {
+      transition: all 0.5s;
+      &.active , &:hover{
         background-color: rgba(255, 255, 255, 0.15);
       }
     }

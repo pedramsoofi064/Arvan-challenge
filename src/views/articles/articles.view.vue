@@ -11,6 +11,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.articles {
+    flex: 1;
+}
 
 </style>
