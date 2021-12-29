@@ -1,6 +1,5 @@
 <template>
    <section class="articles">
-       this is article
        <router-view />
    </section>
 </template>
@@ -14,6 +13,11 @@ export default {
 <style lang="scss">
 .articles {
     flex: 1;
+    padding: 20px 30px;
+
+    &__title {
+        font-size: 2.5em;
+    }
 }
 
 </style>
