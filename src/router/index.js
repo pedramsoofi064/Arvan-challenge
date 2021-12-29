@@ -21,7 +21,10 @@ const routes = [
         path: articlesCostatnts.ARTICLES_ROUTE_PATH,
         name: articlesCostatnts.ARTICLES_ROUTE_NAME,
         component: () => import('@/views/articles/articles.view.vue'),
-        children: articlesChildren
+        children: articlesChildren,
+        meta: {
+            layout: articlesCostatnts.LAYOUT
+        }
     }
 ]
 
