@@ -21,8 +21,8 @@
               <span class="action-btn__icon">></span>
 
               <div v-if="tr.showMore" class="more-tab d-flex">
-                <span class="text-left" @click="handleAction('edit' , tr)">Edit</span>
-                <span class="text-left" @click="handleAction('delete' , tr)">Delete</span>
+                <span class="text-left" @click="handleAction('edit', tr)">Edit</span>
+                <span class="text-left" @click="handleAction('delete', tr)">Delete</span>
               </div>
             </button-component>
           </td>
@@ -32,7 +32,7 @@
         </tr>
       </tbody>
     </table>
-    <pagination  v-model="page" :length="totalPage" />
+    <pagination v-model="page" :length="totalPage" />
   </div>
 </template>
 
@@ -219,7 +219,7 @@
             &:first-child {
               border-bottom: 1px solid var(--grey2-color);
             }
-            &:hover{
+            &:hover {
               background-color: var(--grey2-color);
             }
           }

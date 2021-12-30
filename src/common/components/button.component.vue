@@ -29,7 +29,7 @@
 
 <style lang="scss">
   .btn {
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 4px;
 
     &-primary {

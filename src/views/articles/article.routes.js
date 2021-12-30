@@ -18,16 +18,16 @@ const routes = [
     },
   },
   {
-    path: articlesCostatnts.MODIFY_ROUTE_PATH,
-    name: articlesCostatnts.MODIFY_ROUTE_NAME,
+    path: articlesCostatnts.CREATE_ROUTE_PATH,
+    name: articlesCostatnts.CREATE_ROUTE_NAME,
     component: () => import('./modify/modify.view.vue'),
     meta: {
       layout: articlesCostatnts.LAYOUT,
     },
   },
   {
-    path: articlesCostatnts.MODIFY1_ROUTE_PATH,
-    name: articlesCostatnts.MODIFY_ROUTE_NAME,
+    path: articlesCostatnts.EDIT_ROUTE_PATH,
+    name: articlesCostatnts.EDIT_ROUTE_NAME,
     component: () => import('./modify/modify.view.vue'),
     meta: {
       layout: articlesCostatnts.LAYOUT,

@@ -83,6 +83,7 @@
 
 <style lang="scss">
   .custom-input {
+    margin-bottom: 10px;
     &__container {
       position: relative;
       display: flex;
@@ -130,7 +131,7 @@
 
       &:focus ~ .custom-input__label,
       &:not(:placeholder-shown) ~ .custom-input__label {
-        transform: translate(0, -35px);
+        transform: translate(0, -32px);
       }
       &:focus ~ .custom-input__label {
         color: var(--primary-color);
@@ -138,11 +139,11 @@
     }
     &__message {
       height: 24px;
+      padding-left: 5px;
       overflow: hidden;
-      margin-top: 7px;
     }
     &__message-item {
-      font-size: 0.8em;
+      font-size: 0.7em;
 
       &--error {
         color: var(--error-color);

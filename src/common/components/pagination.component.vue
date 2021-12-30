@@ -131,7 +131,7 @@
       display: flex;
       justify-content: center;
       user-select: none;
-       border: solid 1px var(--grey2-color);
+      border: solid 1px var(--grey2-color);
 
       &__button {
         width: 40px;

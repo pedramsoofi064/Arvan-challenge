@@ -6,7 +6,7 @@
         v-for="(link, index) in sidebarData.links"
         :key="`link-${index}`"
         :to="link.anchor"
-        exact-active-class="active"
+        active-class="active"
       >
         {{ link.text }}
       </router-link>
