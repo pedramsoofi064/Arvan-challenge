@@ -25,8 +25,7 @@
               />
             </div> -->
           </th>
-          <th v-if="actions && actions.length" :colspan="actions.length" class="costum-table__header-item">
-          </th>
+          <th class="costum-table__header-item"> </th>
         </tr>
       </thead>
       <tbody class="costum-table__body">
@@ -34,34 +33,25 @@
           <td v-for="(td, tdIndex) in headers" :key="'td_' + tdIndex" class="costum-table__body-item">
             {{ tr[td.item] }}
           </td>
-          <td
-            v-for="(action, actionIndex) in actions"
-            :key="'action_' + actionIndex"
-            class="costum-table__body-item"
-            style="width: 40px"
-          >
-            <button-component
-              @click="handleAction(action.event, tr)"
-              :color="action.color"
-              :dark="action.dark"
-              class="px-4 py-3 d-flex align-center"
-            >
-              {{ action.text }}
+
+          <td class="costum-table__body-item">
+            <button-component @click="tr.showMore = !tr.showMore" class="info d-flex action-btn">
+              <span class="action-btn__text">...</span>
+              <span class="action-btn__icon">></span>
+
+              <div v-if="tr.showMore" class="more-tab d-flex">
+                <span class="text-left" @click="handleAction('edit' , tr)">Edit</span>
+                <span class="text-left" @click="handleAction('delete' , tr)">Delete</span>
+              </div>
             </button-component>
           </td>
         </tr>
         <tr v-if="!pageItems.length" class="costum-table__body-row">
-          <td
-            :colspan="headers.length + actions.length"
-            class="costum-table__body-item"
-            style="border-radius: 5px"
-          >
-            لیست خالی است
-          </td>
+          <td class="costum-table__body-item" style="border-radius: 5px"> لیست خالی است </td>
         </tr>
       </tbody>
     </table>
-    <pagination v-model="page" :length="totalPage" />
+    <pagination  v-model="page" :length="totalPage" />
   </div>
 </template>
 
@@ -113,6 +103,10 @@
         },
       },
     },
+    mounted() {
+      this.totalItems = JSON.parse(JSON.stringify(this.items));
+      this.calculatePage();
+    },
     methods: {
       sortItems(val) {
         if (val.item === this.sort.item) this.sort.ASC = !this.sort.ASC;
@@ -148,7 +142,7 @@
       },
       calculatePage() {
         if (this.paginate) {
-          this.totalPage = Math.ceil(this.totalItems.length / this.limit);
+          this.totalPage = Math.ceil(this.totalItems?.length / this.limit);
           const start = this.limit * (this.page - 1);
           const end = start + this.limit;
           this.pageItems = this.totalItems.slice(start, end);
@@ -213,6 +207,47 @@
         padding-left: 15px;
         border-radius: 5px 0 0 5px;
       }
+
+      .action-btn {
+        padding: 0;
+        position: relative;
+        span {
+          color: white;
+          padding: 5px 10px;
+        }
+
+        .action-btn__icon {
+          transform: rotate(90deg);
+        }
+
+        .more-tab {
+          width: 175px;
+
+          height: 80px;
+          position: absolute;
+          background-color: white;
+          top: 100%;
+          flex-direction: column;
+          border-radius: 4px;
+          z-index: 999;
+          border: 1px solid var(--grey2-color);
+          right: 10px;
+          > span {
+            flex: 1;
+            color: var(--grey6-color);
+            &:first-child {
+              border-bottom: 1px solid var(--grey2-color);
+            }
+            &:hover{
+              background-color: var(--grey2-color);
+            }
+          }
+        }
+      }
+    }
+
+    .pagination-container {
+      margin-top: 1em;
     }
   }
 </style>

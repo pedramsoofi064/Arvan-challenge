@@ -1,23 +1,25 @@
 <template>
-  <div class="pagination">
-    <button-component @click="prevPage()" size="small" color="#fff" class="pagination__button ml-3">
-      {{ nextPageIcon }}
-    </button-component>
-    <div v-for="i in pages" :key="i" class="pagination__item">
-      <button-component
-        @click="currentPage = i"
-        v-if="i.toString().indexOf('split') === -1"
-        size="small"
-        color="#fff"
-        class="pagination__button"
-        :class="{ 'pagination__button--active': i === value }"
-        >{{ i }}</button-component
-      >
-      <div v-else class="mx-3">...</div>
+  <div class="pagination-container">
+    <div class="pagination">
+      <button-component @click="prevPage()" size="small" color="#fff" class="pagination__button">
+        {{ prevPageIcon }}
+      </button-component>
+      <div v-for="i in pages" :key="i" class="pagination__item">
+        <button-component
+          @click="currentPage = i"
+          v-if="i.toString().indexOf('split') === -1"
+          size="small"
+          color="#fff"
+          class="pagination__button"
+          :class="{ 'pagination__button--active': i === value }"
+          >{{ i }}</button-component
+        >
+        <div v-else class="mx-3">...</div>
+      </div>
+      <button-component @click="nextPage()" size="small" color="#fff" class="pagination__button">
+        {{ nextPageIcon }}
+      </button-component>
     </div>
-    <button-component @click="nextPage()" size="small" color="#fff" class="pagination__button mr-3">
-      {{ prevPageIcon }}
-    </button-component>
   </div>
 </template>
 
@@ -121,17 +123,24 @@
 </script>
 
 <style lang="scss" scoped>
-  .pagination {
+  .pagination-container {
     display: flex;
     justify-content: center;
-    user-select: none;
-    &__button {
-      width: 40px;
-      margin: 4px;
-      transition: 0.3s ease;
-      &--active {
-        background-color: var(--primary-color) !important;
-        color: #fff !important;
+    align-items: center;
+    .pagination {
+      display: flex;
+      justify-content: center;
+      user-select: none;
+       border: solid 1px var(--grey2-color);
+
+      &__button {
+        width: 40px;
+        transition: 0.3s ease;
+        padding: 0;
+        &--active {
+          background-color: var(--primary-color) !important;
+          color: #fff !important;
+        }
       }
     }
   }
