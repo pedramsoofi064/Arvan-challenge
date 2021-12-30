@@ -5,25 +5,6 @@
         <tr>
           <th v-for="(th, index) in headers" :key="index" class="costum-table__header-item">
             {{ th.text }}
-            <!-- <div
-              v-if="th.sort"
-              @click="sortItems(th)"
-              class="costum-table__sort-icon"
-            >
-              <sort-icon
-                :color="
-                  sort.item === th.item && sort.ASC
-                    ? 'var(--primary-color)'
-                    : 'var(--secondary-color)'
-                "
-                :color2="
-                  sort.item === th.item && !sort.ASC
-                    ? 'var(--primary-color)'
-                    : 'var(--secondary-color)'
-                "
-                class="mr-1"
-              />
-            </div> -->
           </th>
           <th class="costum-table__header-item"> </th>
         </tr>
