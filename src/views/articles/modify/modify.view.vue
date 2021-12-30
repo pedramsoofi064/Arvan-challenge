@@ -19,7 +19,7 @@
         <div class="modify__tags d-flex">
           <input-component v-model="newTag" rules="" class="form__input" label="New tag" />
           <div class="tags-container">
-            <div class="d-flex align-center" v-for="(tag, index) in allTags" :key="`tag-${index}`">
+            <div class="d-flex align-center" v-for="(tag, index) in sortedTags" :key="`tag-${index}`">
               <template v-if="tag">
                 <input type="checkbox" :id="`tag-${index}`" :value="tag" v-model="model.tagList" />
                 <label :for="`tag-${index}`">{{ tag }}</label>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="modify__action">
-        <button-component class="btn btn-primary">Submit</button-component>
+        <button-component :loading='loading' class="btn btn-primary" >Submit</button-component>
       </div>
     </form-component>
   </section>
