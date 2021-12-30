@@ -11,33 +11,33 @@
 </template>
 
 <script>
-export default {
-  name: 'headerComponent',
-  data() {
-    return {
-      username: 'Pedram',
-    };
-  },
-};
+  export default {
+    name: 'headerComponent',
+    data() {
+      return {
+        username: 'Pedram',
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.header {
-  color: white;
-  height: 60px;
-  padding: 0 20px;
-  &__info {
-    .title {
-      font-size: 1.375em;
-      margin-right: 1.25em;
+  .header {
+    color: white;
+    height: 60px;
+    padding: 0 20px;
+    &__info {
+      .title {
+        font-size: 1.375em;
+        margin-right: 1.25em;
+      }
     }
-  }
 
-  &__action {
-    .btn {
-      width: 90px;
-      height: 40px;
+    &__action {
+      .btn {
+        width: 90px;
+        height: 40px;
+      }
     }
   }
-}
 </style>

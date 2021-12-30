@@ -1,9 +1,9 @@
-import client from './clients/default.client'
+import client from './clients/default.client';
 
-const resource = '/tags'
+const resource = '/tags';
 
 export default {
-    getTags() {
-        return client.post(`${resource}`)
-    },
-}
+  getTags() {
+    return client.post(`${resource}`);
+  },
+};

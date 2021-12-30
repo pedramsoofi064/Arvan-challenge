@@ -1,9 +1,6 @@
-
 export default {
-    name:"Page",
-    data() {
-        return {
-            
-        }
-    }
-}
+  name: 'Page',
+  data() {
+    return {};
+  },
+};

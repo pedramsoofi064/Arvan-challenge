@@ -1,14 +1,10 @@
 <template>
   <section class="page">
-      <div class="articles__title ">All Posts</div>
-      <div class="page__list"></div>
+    <div class="articles__title">All Posts</div>
+    <div class="page__list"> </div>
   </section>
 </template>
 
-<script src="./page.view.js">
+<script src="./page.view.js"></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

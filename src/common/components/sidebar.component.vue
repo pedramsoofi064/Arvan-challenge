@@ -15,40 +15,41 @@
 </template>
 
 <script>
-import articlesCostatnts from '@/constants/article.constants';
+  import articlesCostatnts from '@/constants/article.constants';
 
-export default {
-  name: 'sidebarComponent',
-  data() {
-    return {};
-  },
-  computed: {
-    sidebarData() {
-      return articlesCostatnts.SIDEBAR;
+  export default {
+    name: 'sidebarComponent',
+    data() {
+      return {};
     },
-  },
-};
+    computed: {
+      sidebarData() {
+        return articlesCostatnts.SIDEBAR;
+      },
+    },
+  };
 </script>
 
 <style lang="scss">
-.sidebar {
-  width: 250px;
-  color: white;
-  &__title {
-    padding: 10px 20px;
-  }
-  &__items {
-    flex-direction: column;
-    > a {
-      padding: 10px 36px;
-      cursor: pointer;
-      text-decoration: none;
-      color: white;
-      transition: all 0.5s;
-      &.active , &:hover{
-        background-color: rgba(255, 255, 255, 0.15);
+  .sidebar {
+    width: 250px;
+    color: white;
+    &__title {
+      padding: 10px 20px;
+    }
+    &__items {
+      flex-direction: column;
+      > a {
+        padding: 10px 36px;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        transition: all 0.5s;
+        &.active,
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.15);
+        }
       }
     }
   }
-}
 </style>

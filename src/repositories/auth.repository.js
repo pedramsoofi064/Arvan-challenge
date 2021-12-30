@@ -1,12 +1,12 @@
-import client from './clients/default.client'
+import client from './clients/default.client';
 
-const resource = '/users'
+const resource = '/users';
 
 export default {
-    login(data) {
-        return client.post(`${resource}/login`, data)
-    },
-    register(data) {
-        return client.post(`${resource}/`, data)
-    }
-}
+  login(data) {
+    return client.post(`${resource}/login`, data);
+  },
+  register(data) {
+    return client.post(`${resource}/`, data);
+  },
+};

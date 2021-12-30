@@ -1,4 +1,2 @@
-
-import './axios.plugin'
-import  './vee-validate.plugin'
-
+import './axios.plugin';
+import './vee-validate.plugin';
