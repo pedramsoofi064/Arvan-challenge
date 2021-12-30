@@ -5,11 +5,11 @@
 </template>
 
 <script>
-const Layout = () => import('@/layouts/layoutWrapper.vue');
+  const Layout = () => import('@/layouts/layoutWrapper.vue');
 
-export default {
-  components: { Layout },
-};
+  export default {
+    components: { Layout },
+  };
 </script>
 
 <style lang="scss"></style>
