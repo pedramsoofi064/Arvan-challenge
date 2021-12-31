@@ -5,7 +5,7 @@
       <span class="d-flex align-center">Welcome {{ username }}</span>
     </div>
     <div class="header__action">
-      <button-component class="btn btn-primary btn-outline" @click="logout()">Logout</button-component>
+      <button-component class="btn primary btn-outline" @click="logout()">Logout</button-component>
     </div>
   </header>
 </template>
@@ -19,10 +19,8 @@
       };
     },
     methods: {
-      logout() {
-        
-      }
-    }
+      logout() {},
+    },
   };
 </script>
 

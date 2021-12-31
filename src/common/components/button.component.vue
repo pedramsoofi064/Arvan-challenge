@@ -31,22 +31,20 @@
   .btn {
     padding: 5px 10px;
     border-radius: 4px;
-    color: white;
     border: 1px solid var(--grey2-color);
     color: var(--grey6-color);
+    background-color: white;
 
-    &-fill {
-      color: white;
-    }
-    &-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      color: white;
-    }
-
-    &-outline {
-      background-color: transparent;
-      
+    $colors: primary, success, info, warning, error;
+    @each $color in $colors {
+      &.#{$color} {
+        color: white;
+        border-color: var(--#{$color}-color);
+        &.btn-outline {
+          background-color: transparent !important;
+          color: var(--#{$color}-color);
+        }
+      }
     }
   }
 </style>

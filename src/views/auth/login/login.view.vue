@@ -10,7 +10,7 @@
         class="form__input"
         label="Password"
       />
-      <button-component :loading="loading" class="btn-primary w-100" @click="loading = true">
+      <button-component :loading="loading" class="btn primary w-100" @click="loading = true">
         Login
       </button-component>
     </form-component>
