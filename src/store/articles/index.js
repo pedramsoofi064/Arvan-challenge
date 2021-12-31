@@ -1,368 +1,98 @@
-// import RepositoryFactory from '@/repositories/RepositoryFactory';
-// const articlesRepository = RepositoryFactory.get('articles');
+import RepositoryFactory from '@/repositories/RepositoryFactory';
+const articlesRepository = RepositoryFactory.get('articles');
 export default {
   namespaced: true,
   state: {
-    articles: [
-      {
-        slug: 'Create-a-new-implementation-1',
-        title: 'Create a new implementation',
-        description: 'join the community by creating a new implementation',
-        body: 'Share your knowledge and enpower the community by creating a new implementation',
-        createdAt: '2021-11-24T12:11:08.212Z',
-        updatedAt: '2021-11-24T12:11:08.212Z',
-        tagList: ['implementations'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
+    articles: [],
+    selectedArticle: null,
+  },
+  actions: {
+    setState({commit}, payload) {
+      commit('setState', payload)
+    },
+    async getArticles({
+      commit
+    }) {
+      try {
+        const {
+          data
+        } = await articlesRepository.getArticles()
+        commit('getArticles', data?.articles)
 
-        favoritesCount: 578,
-        favorited: false,
-      },
-      {
-        slug: 'Explore-implementations-1',
-        title: 'Explore implementations',
-        description: 'discover the implementations created by the RealWorld community',
-        body: 'Over 100 implementations have been created using various languages, libraries, and frameworks.\n\nExplore them on CodebaseShow.',
-        createdAt: '2021-11-24T12:11:07.952Z',
-        updatedAt: '2021-11-24T12:11:07.952Z',
-        tagList: ['codebaseShow', 'implementations'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
+      } catch {
+        throw new Error()
+      }
 
-        favoritesCount: 374,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
+    },
+    async getOneArticle({commit} , slug){
+      try {
+        const {data} = await articlesRepository.getOneArticle(slug);
+        commit('setState' , {
+          selectedArticle: data?.article
+        })
+      }
+      catch {
+        throw new Error()
+      }
+    },
+    async createArticle({
+      commit
+    }, payload) {
+      try {
+        const {
+          data
+        } = await articlesRepository.createArticle(payload)
 
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
+        commit('createArticle', data.article)
+      } catch {
+        throw new Error()
+      }
+    },
+    async updateArticle({
+      commit
+    }, payload) {
+      try {
+        const {
+          data
+        } = await articlesRepository.updateArticle(payload.slug , payload.data)
+        console.log(data);
+        commit
+        // commit('updateArticle', data.article)
+      } catch {
+        throw new Error()
+      }
+    },
 
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
+    async deleteArticle({commit , state}) {
+      try {
+        const slug = state.selectedArticle.slug
+        await articlesRepository.deleteArticle(slug);
+        commit('deleteArticle' ,slug )
+      }
+      catch {
+        throw new Error()
+      }
+    }
 
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
+  },
+  mutations: {
+    getArticles(state, payload) {
+      state.articles = payload;
+    },
+    createArticle(state, payload) {
+      state.articles.push(payload)
 
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-      {
-        slug: 'Welcome-to-RealWorld-project-1',
-        title: 'Welcome to RealWorld project',
-        description:
-          'Exemplary fullstack Medium.com clone powered by React, Angular, Node, Django, and many more',
-        body: 'See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec',
-        createdAt: '2021-11-24T12:11:07.557Z',
-        updatedAt: '2021-11-24T12:11:07.557Z',
-        tagList: ['welcome', 'introduction'],
-        author: {
-          username: 'Gerome',
-          bio: null,
-          image: 'https://api.realworld.io/images/demo-avatar.png',
-        },
-
-        favoritesCount: 237,
-        favorited: false,
-      },
-    ],
-    selectedArticle: {
-      slug: 'Create-a-new-implementation-1',
-      title: 'Create a new implementation',
-      description: 'join the community by creating a new implementation',
-      body: 'Share your knowledge and enpower the community by creating a new implementation',
-      createdAt: '2021-11-24T12:11:08.212Z',
-      updatedAt: '2021-11-24T12:11:08.212Z',
-      tagList: ['implementations'],
-      author: {
-        username: 'Gerome',
-        bio: null,
-        image: 'https://api.realworld.io/images/demo-avatar.png',
-      },
-
-      favoritesCount: 578,
-      favorited: false,
+    },
+    setState(state, payload) {
+      Object.keys(payload).map((key) => {
+        state[key] = payload[key]
+      })
+    },
+    deleteArticle(state , slug){
+      state.articles = state.articles.filter(item => item.slug !== slug)
+    },
+    updateArticle(state , slug){
+      state.articles = state.articles.filter(item => item.slug !== slug)
     },
   },
-  actions: {},
-  mutations: {},
 };

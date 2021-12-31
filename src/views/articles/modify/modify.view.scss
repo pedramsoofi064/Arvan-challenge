@@ -8,7 +8,9 @@
             .article__body {
                 flex-direction: column;
                 align-items: flex-start;
-
+                span {
+                    color: var(--grey6-color);
+                }
                 textarea {
                     width: 100%;
                     height: 200px;
@@ -17,6 +19,14 @@
                     resize: none;
                     outline: none;
                     padding: 10px;
+                }
+                .invalid {
+                    >span {
+                        color: var(--error-color);
+                    }
+                    textarea {
+                        border-color: var(--error-color);
+                    }
                 }
             }
         }

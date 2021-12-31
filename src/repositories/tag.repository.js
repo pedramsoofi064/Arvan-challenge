@@ -4,6 +4,6 @@ const resource = '/tags';
 
 export default {
   getTags() {
-    return client.post(`${resource}`);
+    return client.get(`${resource}`);
   },
 };

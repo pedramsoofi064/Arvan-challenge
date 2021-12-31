@@ -17,8 +17,8 @@ function makeException(client, config) {
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.log(error.response);
     if (error.response) {
-      console.log(error.response);
       const { errors } = error.response.data;
       Object.keys(errors).forEach((item) => {
         toast.showMessage({
@@ -27,6 +27,7 @@ axiosInstance.interceptors.response.use(
         });
       });
     }
+  
     throw new makeException(axiosInstance, error.config);
   },
 );
