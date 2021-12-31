@@ -26,7 +26,7 @@ axiosInstance.interceptors.response.use((response) => response, (error) => {
     Object.keys(errors).forEach(item => {
 
       toast.showMessage({
-        content: `${item}: ${errors[item][0]}`,
+        content: `${item} ${errors[item][0]}`,
         type: 'error'
       })
     })
