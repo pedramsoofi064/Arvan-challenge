@@ -1,8 +1,8 @@
 <template>
   <section class="auth_section signup">
     <h1 class="auth__title text-center">REGISTER</h1>
-    <form-component auto-validation>
-      <input-component v-model="model.user" rules="required" class="form__input" label="User" />
+    <form-component auto-validation @submit="register()">
+      <input-component v-model="model.username" rules="required" class="form__input" label="User" />
       <input-component v-model="model.email" rules="required|email" class="form__input" label="Email" />
       <input-component
         v-model="model.password"
@@ -11,7 +11,7 @@
         class="form__input"
         label="Password"
       />
-      <button-component :loading="loading" class="btn-primary w-100" @click="loading = true">
+      <button-component :loading="loading" class="btn primary w-100" type="submit">
         Register
       </button-component>
     </form-component>
