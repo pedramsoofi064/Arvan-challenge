@@ -1,14 +1,15 @@
 <template>
   <Layout>
     <router-view />
+    <Toast />
   </Layout>
 </template>
 
 <script>
   const Layout = () => import('@/layouts/layoutWrapper.vue');
-
+  const Toast = () => import('@/common/components/toast.component.vue')
   export default {
-    components: { Layout },
+    components: { Layout , Toast },
   };
 </script>
 
