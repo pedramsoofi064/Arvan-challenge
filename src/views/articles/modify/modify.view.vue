@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="modify__action">
-        <button-component :loading='loading' class="btn primary" >Submit</button-component>
+        <button-component :loading="loading" class="btn primary">Submit</button-component>
       </div>
     </form-component>
   </section>

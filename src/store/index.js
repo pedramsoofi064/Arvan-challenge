@@ -9,6 +9,6 @@ export default new Vuex.Store({
   modules: {
     articlesModule,
     tagModule,
-    ToastModule
+    ToastModule,
   },
 });

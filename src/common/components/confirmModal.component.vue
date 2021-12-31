@@ -6,7 +6,7 @@
         <button-component class="btn btn-outline" @click="$emit('close')">
           {{ btnCancel }}
         </button-component>
-        <button-component  class="btn btn-fill error" @click="$emit('confirm')">
+        <button-component class="btn btn-fill error" @click="$emit('confirm')">
           {{ btnConfirm }}
         </button-component>
       </div>
@@ -62,7 +62,7 @@
     .btn {
       width: 70px;
       &:first-child {
-          margin-right: 15px;
+        margin-right: 15px;
       }
     }
   }

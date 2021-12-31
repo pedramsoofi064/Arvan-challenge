@@ -1,9 +1,7 @@
-import {
-  mapState
-} from 'vuex';
+import { mapState } from 'vuex';
 
 import TableComponent from '@/common/components/table.component.vue';
-import ConfirmModalComponent from '@/common/components/confirmModal.component.vue'
+import ConfirmModalComponent from '@/common/components/confirmModal.component.vue';
 export default {
   name: 'Page',
   components: {
@@ -13,7 +11,8 @@ export default {
   data() {
     return {
       confirmDeleteModal: false,
-      tableHeaders: [{
+      tableHeaders: [
+        {
           text: '#',
           item: 'id',
           type: 'number',
@@ -53,13 +52,7 @@ export default {
     }),
     tableBody() {
       return this.articles.map((item, index) => {
-        let {
-          title,
-          author,
-          tagList,
-          body,
-          createdAt
-        } = item;
+        let { title, author, tagList, body, createdAt } = item;
 
         return {
           id: index + 1,
@@ -92,8 +85,6 @@ export default {
       item;
       this.confirmDeleteModal = true;
     },
-    deleteArticle() {
-
-    }
+    deleteArticle() {},
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <section class="auth_section login">
     <h1 class="auth__title text-center">LOGIN</h1>
-    <form-component auto-validation>
+    <form-component auto-validation @submit="login()">
       <input-component v-model="model.email" rules="required|email" class="form__input" label="Email" />
       <input-component
         v-model="model.password"
@@ -10,9 +10,7 @@
         class="form__input"
         label="Password"
       />
-      <button-component :loading="loading" class="btn primary w-100" @click="loading = true">
-        Login
-      </button-component>
+      <button-component :loading="loading" class="btn primary w-100" type="submit"> Login </button-component>
     </form-component>
 
     <div class="auth__subtitle d-flex">
