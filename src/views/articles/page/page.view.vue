@@ -10,6 +10,13 @@
         paginate
       />
     </div>
+    <ConfirmModalComponent
+      :show="confirmDeleteModal"
+      title="Delete Article"
+      message="Are you sure to delete Article?"
+      @close="confirmDeleteModal = false"
+      @confirm="deleteArticle()"
+    />
   </section>
 </template>
 

@@ -31,16 +31,22 @@
   .btn {
     padding: 5px 10px;
     border-radius: 4px;
+    color: white;
+    border: 1px solid var(--grey2-color);
+    color: var(--grey6-color);
 
+    &-fill {
+      color: white;
+    }
     &-primary {
       background-color: var(--primary-color);
-      border: 1px solid var(--primary-color);
+      border-color: var(--primary-color);
       color: white;
     }
 
     &-outline {
       background-color: transparent;
-      color: var(--primary-color);
+      
     }
   }
 </style>
