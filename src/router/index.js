@@ -23,6 +23,7 @@ const routes = [
     children: articlesChildren,
     meta: {
       layout: articlesCostatnts.LAYOUT,
+      isAuthRequired: true,
     },
   },
 ];
@@ -33,6 +34,7 @@ const router = new VueRouter({
   routes,
 });
 
+// TO FIX : authenticate middle and add authorize middleware
 router.beforeEach(authMiddleware);
 
 export default router;

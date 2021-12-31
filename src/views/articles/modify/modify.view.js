@@ -121,7 +121,6 @@ export default {
 
     },
     mapDataToModel() {
-      console.log(this.selectedArticle);
       const {
         title,
         description,

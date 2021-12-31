@@ -7,6 +7,7 @@ const routes = [
     component: () => import('./page/page.view.vue'),
     meta: {
       layout: articlesCostatnts.LAYOUT,
+      isAuthRequired: true,
     },
   },
   {
@@ -15,6 +16,7 @@ const routes = [
     component: () => import('./page/page.view.vue'),
     meta: {
       layout: articlesCostatnts.LAYOUT,
+      isAuthRequired: true,
     },
   },
   {
@@ -23,6 +25,7 @@ const routes = [
     component: () => import('./modify/modify.view.vue'),
     meta: {
       layout: articlesCostatnts.LAYOUT,
+      isAuthRequired: true,
     },
   },
   {
@@ -31,6 +34,7 @@ const routes = [
     component: () => import('./modify/modify.view.vue'),
     meta: {
       layout: articlesCostatnts.LAYOUT,
+      isAuthRequired: true,
     },
   },
 ];
