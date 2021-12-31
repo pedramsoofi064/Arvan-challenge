@@ -79,7 +79,9 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('ArticlesModule/getArticles');
+    // slug changed after update and articles shoud fetch again
+    // if(!this.articles.length)
+      this.$store.dispatch('ArticlesModule/getArticles');
   },
   methods: {
     dateGenerator(date) {

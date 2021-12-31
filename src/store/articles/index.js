@@ -55,8 +55,7 @@ export default {
         const {
           data
         } = await articlesRepository.updateArticle(payload.slug , payload.data)
-        console.log(data);
-        commit
+        // NOTE : update artcle in state.articles but slug changed!
         // commit('updateArticle', data.article)
       } catch {
         throw new Error()
@@ -91,8 +90,8 @@ export default {
     deleteArticle(state , slug){
       state.articles = state.articles.filter(item => item.slug !== slug)
     },
-    updateArticle(state , slug){
-      state.articles = state.articles.filter(item => item.slug !== slug)
-    },
+    // updateArticle(state , slug){
+    //   //slug changed !
+    // },
   },
 };
