@@ -28,7 +28,7 @@
           </td>
         </tr>
         <tr v-if="!pageItems.length" class="costum-table__body-row">
-          <td class="costum-table__body-item" style="border-radius: 5px"> لیست خالی است </td>
+          <td class="costum-table__body-item" style="border-radius: 5px"> empty list !!</td>
         </tr>
       </tbody>
     </table>

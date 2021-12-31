@@ -12,7 +12,10 @@ export default {
   updateArticle(id, data) {
     return client.put(`${resource}/${id}`, data);
   },
-  deleteArticle(id) {
-    return client.delete(`${resource}/${id}`);
+  deleteArticle(slug) {
+    return client.delete(`${resource}/${slug}`);
   },
+  getOneArticle(slug) {
+    return client.get(`${resource}/${slug}`)
+  }
 };

@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     ...mapState({
-      selectedArticle: (state) => state.articlesModule.selectedArticle,
+      selectedArticle: (state) => state.ArticlesModule.selectedArticle,
     }),
     sortedTags() {
       return this.allTags.sort((a, b) => a.localeCompare(b));
@@ -55,24 +55,22 @@ export default {
   },
 
   async mounted() {
+
     const {
       data
     } = await tagRepository.getTags();
     this.allTags = data?.tags;
+    if (this.mode === 'edit') {
+      const {
+        slug
+      } = this.$route.params;
+      if (this.selectedArticle?.slug !== slug) {
+        await this.$store.dispatch('ArticlesModule/getOneArticle', slug);
+      }
+      this.mapDataToModel();
+    }
 
-    // this.$store.dispatch('TagModule/getTags').then((res) => {
-    //   console.log(res);
-    //   this.allTags = this.tags
-    //   console.log(this.allTags);
-    //   if (this.mode === 'edit') {
-    //     const slug = this.$route.params;
-    //     if (this.selectedArticle?.slug !== slug) {
-    //       //TODO
-    //     }
-    //     this.mapDataToModel();
-    //   }
-    // });
-
+  
   },
   methods: {
     handleSubmit() {
@@ -90,7 +88,7 @@ export default {
         })
         this.$toast.showMessage({
           content: '<b>Well done!</b> Article created successfuly',
-          type:'success'
+          type: 'success'
         })
         this.loading = false
         this.$router.push('/articles/page')
@@ -99,10 +97,31 @@ export default {
       }
 
     },
-    editArticle() {
+    async editArticle() {
+      this.loading = true;
+      const {
+        slug
+      } = this.$route.params;
+      try {
+        await this.$store.dispatch('ArticlesModule/updateArticle', {
+          data: {
+            article: this.model
+          },
+          slug
+        })
+        this.$toast.showMessage({
+          content: '<b>Well done!</b> Article updated successfuly',
+          type: 'success'
+        })
+        this.loading = false
+        this.$router.push('/articles/page')
+      } catch {
+        this.loading = false;
+      }
 
     },
     mapDataToModel() {
+      console.log(this.selectedArticle);
       const {
         title,
         description,
@@ -115,7 +134,7 @@ export default {
         body,
         tagList,
       };
-      this.allTags = [...tagList];
+      this.allTags = [...this.allTags, ...tagList];
     },
   },
 };

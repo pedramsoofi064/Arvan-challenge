@@ -1,4 +1,6 @@
-import { mapState } from 'vuex';
+import {
+  mapState
+} from 'vuex';
 
 import TableComponent from '@/common/components/table.component.vue';
 import ConfirmModalComponent from '@/common/components/confirmModal.component.vue';
@@ -11,8 +13,7 @@ export default {
   data() {
     return {
       confirmDeleteModal: false,
-      tableHeaders: [
-        {
+      tableHeaders: [{
           text: '#',
           item: 'id',
           type: 'number',
@@ -30,7 +31,7 @@ export default {
         },
         {
           text: 'Tags',
-          item: 'tags',
+          item: 'tagList',
           sort: true,
         },
         {
@@ -52,15 +53,26 @@ export default {
     }),
     tableBody() {
       return this.articles.map((item, index) => {
-        let { title, author, tagList, body, createdAt } = item;
+        let {
+          title,
+          author,
+          tagList,
+          body,
+          createdAt,
+          slug,
+          description
+        } = item;
 
         return {
           id: index + 1,
           title,
           author: `@${author.username}`,
-          tags: tagList,
+          tagList: tagList,
           excerpt: body.slice(0, 19),
           created: this.dateGenerator(new Date(createdAt)),
+          slug,
+          body,
+          description,
           showMore: false,
         };
       });
@@ -79,12 +91,25 @@ export default {
       return date.toLocaleString('en-US', options);
     },
     handleEdit(item) {
-      item;
+
+      this.$store.dispatch('ArticlesModule/setState' , {
+        selectedArticle: item
+      })
+      this.$router.push(`/articles/edit/${item.slug}`)
     },
     handleDelete(item) {
-      item;
       this.confirmDeleteModal = true;
+      this.$store.dispatch('ArticlesModule/setState' ,  {
+        selectedArticle: item
+      })
     },
-    deleteArticle() {},
+    async deleteArticle() {
+      await this.$store.dispatch('ArticlesModule/deleteArticle')
+      this.confirmDeleteModal = false;
+      this.$toast.showMessage({
+        content: '<b>Well done!</b> Article deleted successfuly',
+        type:'success'
+      })
+    },
   },
 };
