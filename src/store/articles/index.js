@@ -7,89 +7,71 @@ export default {
     selectedArticle: null,
   },
   actions: {
-    setState({commit}, payload) {
-      commit('setState', payload)
+    setState({ commit }, payload) {
+      commit('setState', payload);
     },
-    async getArticles({
-      commit
-    }) {
+    async getArticles({ commit }) {
       try {
-        const {
-          data
-        } = await articlesRepository.getArticles()
-        commit('getArticles', data?.articles)
-
+        const { data } = await articlesRepository.getArticles();
+        commit('getArticles', data?.articles);
       } catch {
-        throw new Error()
-      }
-
-    },
-    async getOneArticle({commit} , slug){
-      try {
-        const {data} = await articlesRepository.getOneArticle(slug);
-        commit('setState' , {
-          selectedArticle: data?.article
-        })
-      }
-      catch {
-        throw new Error()
+        throw new Error();
       }
     },
-    async createArticle({
-      commit
-    }, payload) {
+    async getOneArticle({ commit }, slug) {
       try {
-        const {
-          data
-        } = await articlesRepository.createArticle(payload)
-
-        commit('createArticle', data.article)
+        const { data } = await articlesRepository.getOneArticle(slug);
+        commit('setState', {
+          selectedArticle: data?.article,
+        });
       } catch {
-        throw new Error()
+        throw new Error();
       }
     },
-    async updateArticle({
-      commit
-    }, payload) {
+    async createArticle({ commit }, payload) {
       try {
-        const {
-          data
-        } = await articlesRepository.updateArticle(payload.slug , payload.data)
-        data 
+        const { data } = await articlesRepository.createArticle(payload);
+
+        commit('createArticle', data.article);
+      } catch {
+        throw new Error();
+      }
+    },
+    async updateArticle({ commit }, payload) {
+      try {
+        const { data } = await articlesRepository.updateArticle(payload.slug, payload.data);
+        data, commit;
         // NOTE : update artcle in state.articles but slug changed!
         // commit('updateArticle', data.article)
       } catch {
-        throw new Error()
+        throw new Error();
       }
     },
 
-    async deleteArticle({commit , state}) {
+    async deleteArticle({ commit, state }) {
       try {
-        const slug = state.selectedArticle.slug
+        const slug = state.selectedArticle.slug;
         await articlesRepository.deleteArticle(slug);
-        commit('deleteArticle' ,slug )
+        commit('deleteArticle', slug);
+      } catch {
+        throw new Error();
       }
-      catch {
-        throw new Error()
-      }
-    }
-
+    },
   },
   mutations: {
     getArticles(state, payload) {
       state.articles = payload;
     },
     createArticle(state, payload) {
-      state.articles.push(payload)
-
+      state.articles.push(payload);
     },
     setState(state, payload) {
       Object.keys(payload).map((key) => {
-        state[key] = payload[key]
-      })
+        state[key] = payload[key];
+      });
     },
-    deleteArticle(state , slug){
-      state.articles = state.articles.filter(item => item.slug !== slug)
+    deleteArticle(state, slug) {
+      state.articles = state.articles.filter((item) => item.slug !== slug);
     },
     // updateArticle(state , slug){
     //   //slug changed !

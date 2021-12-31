@@ -1,6 +1,4 @@
-import {
-  mapState
-} from 'vuex';
+import { mapState } from 'vuex';
 
 import TableComponent from '@/common/components/table.component.vue';
 import ConfirmModalComponent from '@/common/components/confirmModal.component.vue';
@@ -13,7 +11,8 @@ export default {
   data() {
     return {
       confirmDeleteModal: false,
-      tableHeaders: [{
+      tableHeaders: [
+        {
           text: '#',
           item: 'id',
           type: 'number',
@@ -53,15 +52,7 @@ export default {
     }),
     tableBody() {
       return this.articles.map((item, index) => {
-        let {
-          title,
-          author,
-          tagList,
-          body,
-          createdAt,
-          slug,
-          description
-        } = item;
+        let { title, author, tagList, body, createdAt, slug, description } = item;
 
         return {
           id: index + 1,
@@ -81,7 +72,7 @@ export default {
   mounted() {
     // slug changed after update and articles shoud fetch again
     // if(!this.articles.length)
-      this.$store.dispatch('ArticlesModule/getArticles');
+    this.$store.dispatch('ArticlesModule/getArticles');
   },
   methods: {
     dateGenerator(date) {
@@ -93,25 +84,24 @@ export default {
       return date.toLocaleString('en-US', options);
     },
     handleEdit(item) {
-
-      this.$store.dispatch('ArticlesModule/setState' , {
-        selectedArticle: item
-      })
-      this.$router.push(`/articles/edit/${item.slug}`)
+      this.$store.dispatch('ArticlesModule/setState', {
+        selectedArticle: item,
+      });
+      this.$router.push(`/articles/edit/${item.slug}`);
     },
     handleDelete(item) {
       this.confirmDeleteModal = true;
-      this.$store.dispatch('ArticlesModule/setState' ,  {
-        selectedArticle: item
-      })
+      this.$store.dispatch('ArticlesModule/setState', {
+        selectedArticle: item,
+      });
     },
     async deleteArticle() {
-      await this.$store.dispatch('ArticlesModule/deleteArticle')
+      await this.$store.dispatch('ArticlesModule/deleteArticle');
       this.confirmDeleteModal = false;
       this.$toast.showMessage({
         content: '<b>Well done!</b> Article deleted successfuly',
-        type:'success'
-      })
+        type: 'success',
+      });
     },
   },
 };

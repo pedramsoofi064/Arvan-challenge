@@ -1,18 +1,16 @@
-import {
-  create as createClient
-} from 'axios';
+import { create as createClient } from 'axios';
 import GeneralConstant from '@/constants/general.constants';
 import cookie from '@/plugins/jsCookie.plugin';
 import toast from '@/plugins/toast.plugin';
-import router from '@/router/index'
+import router from '@/router/index';
 
 const axiosInstance = createClient({
   baseURL: GeneralConstant.BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
-    Authorization: `Token ${cookie.get('token')}`
-  }
+    Authorization: `Token ${cookie.get('token')}`,
+  },
 });
 
 function makeException(client, config) {
@@ -24,10 +22,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-
-      const {
-        errors
-      } = error.response.data;
+      const { errors } = error.response.data;
       Object.keys(errors).forEach((item) => {
         toast.showMessage({
           content: `${item} ${errors[item][0]}`,
@@ -44,6 +39,4 @@ axiosInstance.interceptors.response.use(
   },
 );
 
-
-
-export default axiosInstance
+export default axiosInstance;

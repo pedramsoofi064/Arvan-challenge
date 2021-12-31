@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use(
         });
       });
     }
-  
+
     throw new makeException(axiosInstance, error.config);
   },
 );

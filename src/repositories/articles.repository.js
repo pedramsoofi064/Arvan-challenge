@@ -16,6 +16,6 @@ export default {
     return client.delete(`${resource}/${slug}`);
   },
   getOneArticle(slug) {
-    return client.get(`${resource}/${slug}`)
-  }
+    return client.get(`${resource}/${slug}`);
+  },
 };

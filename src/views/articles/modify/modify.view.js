@@ -1,11 +1,7 @@
 import formComponent from '@/common/components/form.component.vue';
-import {
-  ValidationProvider
-} from 'vee-validate';
+import { ValidationProvider } from 'vee-validate';
 
-import {
-  mapState
-} from 'vuex';
+import { mapState } from 'vuex';
 
 import RepositoryFactory from '@/repositories/RepositoryFactory';
 const tagRepository = RepositoryFactory.get('tag');
@@ -14,7 +10,7 @@ export default {
   name: 'modify',
   components: {
     formComponent,
-    ValidationProvider
+    ValidationProvider,
   },
   data() {
     return {
@@ -39,7 +35,6 @@ export default {
     mode() {
       return this.$route.name;
     },
-
   },
   watch: {
     newTag(newVal, oldVal) {
@@ -55,22 +50,15 @@ export default {
   },
 
   async mounted() {
-
-    const {
-      data
-    } = await tagRepository.getTags();
+    const { data } = await tagRepository.getTags();
     this.allTags = data?.tags;
     if (this.mode === 'edit') {
-      const {
-        slug
-      } = this.$route.params;
+      const { slug } = this.$route.params;
       if (this.selectedArticle?.slug !== slug) {
         await this.$store.dispatch('ArticlesModule/getOneArticle', slug);
       }
       this.mapDataToModel();
     }
-
-  
   },
   methods: {
     handleSubmit() {
@@ -84,49 +72,40 @@ export default {
       this.loading = true;
       try {
         await this.$store.dispatch('ArticlesModule/createArticle', {
-          article: this.model
-        })
+          article: this.model,
+        });
         this.$toast.showMessage({
           content: '<b>Well done!</b> Article created successfuly',
-          type: 'success'
-        })
-        this.loading = false
-        this.$router.push('/articles/page')
-      } catch {
-        this.loading = false
-      }
-
-    },
-    async editArticle() {
-      this.loading = true;
-      const {
-        slug
-      } = this.$route.params;
-      try {
-        await this.$store.dispatch('ArticlesModule/updateArticle', {
-          data: {
-            article: this.model
-          },
-          slug
-        })
-        this.$toast.showMessage({
-          content: '<b>Well done!</b> Article updated successfuly',
-          type: 'success'
-        })
-        this.loading = false
-        this.$router.push('/articles/page')
+          type: 'success',
+        });
+        this.loading = false;
+        this.$router.push('/articles/page');
       } catch {
         this.loading = false;
       }
-
+    },
+    async editArticle() {
+      this.loading = true;
+      const { slug } = this.$route.params;
+      try {
+        await this.$store.dispatch('ArticlesModule/updateArticle', {
+          data: {
+            article: this.model,
+          },
+          slug,
+        });
+        this.$toast.showMessage({
+          content: '<b>Well done!</b> Article updated successfuly',
+          type: 'success',
+        });
+        this.loading = false;
+        this.$router.push('/articles/page');
+      } catch {
+        this.loading = false;
+      }
     },
     mapDataToModel() {
-      const {
-        title,
-        description,
-        body,
-        tagList
-      } = this.selectedArticle;
+      const { title, description, body, tagList } = this.selectedArticle;
       this.model = {
         title,
         description,

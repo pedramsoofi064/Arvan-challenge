@@ -13,7 +13,7 @@
           />
           <div class="custom-input__container article__body">
             <ValidationProvider class="w-100" rules="required" name="Body" v-slot="{ errors }">
-              <div :class="{invalid: errors[0]}">
+              <div :class="{ invalid: errors[0] }">
                 <span>Body</span>
                 <textarea v-model="model.body"></textarea>
                 <span class="fs-8">{{ errors[0] }}</span>
