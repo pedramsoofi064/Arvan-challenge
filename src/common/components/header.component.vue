@@ -17,14 +17,14 @@
       logout() {
         this.$cookie.remove('token');
         this.$cookie.remove('username');
-        this.$router.push('/login')
+        this.$router.push('/login');
       },
     },
     computed: {
       username() {
-        return this.$cookie.get('username')
-      }
-    }
+        return this.$cookie.get('username');
+      },
+    },
   };
 </script>
 

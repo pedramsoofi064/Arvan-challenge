@@ -1,14 +1,12 @@
 import formComponent from '@/common/components/form.component.vue';
 
-
-import RepositoryFactory from "@/repositories/RepositoryFactory";
-const authRepository = RepositoryFactory.get("auth");
+import RepositoryFactory from '@/repositories/RepositoryFactory';
+const authRepository = RepositoryFactory.get('auth');
 
 export default {
   name: 'Register',
   components: {
     formComponent,
-
   },
   data() {
     return {
@@ -25,23 +23,20 @@ export default {
       this.loading = true;
 
       try {
-        const {
-          data
-        } = await authRepository.register({
-          user: this.model
-        })
+        const { data } = await authRepository.register({
+          user: this.model,
+        });
         this.loading = false;
-        this.$cookie.set('token', data?.user?.token)
-        this.$cookie.set('username', data?.user?.username)
+        this.$cookie.set('token', data?.user?.token);
+        this.$cookie.set('username', data?.user?.username);
         this.$router.push('/articles/page');
         this.$toast.showMessage({
           content: '<b>Well done!</b> user registred successfuly',
-          type: 'success'
-        })
+          type: 'success',
+        });
       } catch {
         this.loading = false;
-
       }
-    }
-  }
+    },
+  },
 };

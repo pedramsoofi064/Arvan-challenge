@@ -10,9 +10,7 @@
         class="form__input"
         label="Password"
       />
-      <button-component :loading="loading" class="btn primary w-100" type="submit">
-        Login
-      </button-component>
+      <button-component :loading="loading" class="btn primary w-100" type="submit"> Login </button-component>
     </form-component>
 
     <div class="auth__subtitle d-flex">

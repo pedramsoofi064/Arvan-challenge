@@ -1,14 +1,14 @@
 <template>
   <section v-if="show" class="modal w-100 h-100">
     <div class="modal__bg" @click="$emit('close')"></div>
-    <div class=" w-100 h-100 d-flex justify-center align-center">
+    <div class="w-100 h-100 d-flex justify-center align-center">
       <div class="modal__main" :style="{ maxWidth: `${maxWidth}px` }">
         <div class="modal__header d-flex align-center justify-space-between">
           <span class="modal__title fw-bold text-grey6">{{ title }}</span>
           <span class="modal__close" @click="$emit('close')">&times;</span>
         </div>
         <div class="modal__content">
-            <slot />
+          <slot />
         </div>
       </div>
     </div>
@@ -71,8 +71,6 @@
       padding: 10px 15px;
       margin-bottom: 15px;
     }
-
-    
 
     &__close {
       cursor: pointer;
