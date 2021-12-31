@@ -55,6 +55,7 @@ export default {
         const {
           data
         } = await articlesRepository.updateArticle(payload.slug , payload.data)
+        data 
         // NOTE : update artcle in state.articles but slug changed!
         // commit('updateArticle', data.article)
       } catch {
