@@ -1,10 +1,10 @@
-import client from './clients/default.client';
+import client from './clients/user.client';
 
 const resource = '/articles';
 
 export default {
-  getArticles(data) {
-    return client.get(`${resource}`, data);
+  getArticles() {
+    return client.get(`${resource}`);
   },
   createArticle(data) {
     return client.post(`${resource}`, data);

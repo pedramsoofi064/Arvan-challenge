@@ -1,7 +1,7 @@
 <template>
   <section class="page">
     <div class="articles__title">All Posts</div>
-    <div class="page__list">
+    <div class="page__list" v-if="articles">
       <table-component
         @edit="handleEdit($event)"
         @delete="handleDelete($event)"

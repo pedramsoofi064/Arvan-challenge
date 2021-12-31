@@ -5,7 +5,7 @@ const repositories = new Map(
   Object.entries({
     auth: authRepository,
     articles: articlesRepository,
-    tags: tagRepository,
+    tag: tagRepository,
   }),
 );
 

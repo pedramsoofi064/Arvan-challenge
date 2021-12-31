@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     ...mapState({
-      articles: (state) => state.articlesModule.articles,
+      articles: (state) => state.ArticlesModule.articles,
     }),
     tableBody() {
       return this.articles.map((item, index) => {
@@ -67,7 +67,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.articles);
+    this.$store.dispatch('ArticlesModule/getArticles');
   },
   methods: {
     dateGenerator(date) {

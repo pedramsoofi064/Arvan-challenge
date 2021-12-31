@@ -18,7 +18,6 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response) {
-      console.log(error.response);
       const { errors } = error.response.data;
       Object.keys(errors).forEach((item) => {
         toast.showMessage({
